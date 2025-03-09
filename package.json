@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "fetch-places": "npx tsx scripts/fetchPlaces.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.4.1",

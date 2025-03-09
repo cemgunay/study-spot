@@ -7,11 +7,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Job {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  jobLogs     JobLog[] // Relation to JobLog table
+}
+
+model JobLog {
+  id        Int      @id @default(autoincrement())
+  message   String
+  createdAt DateTime @default(now()) // Automatically sets the current timestamp
+  jobId     Int      // Foreign key to Job table
+  job       Job      @relation(fields: [jobId], references: [id]) // Link to Job table
+}
+
 model User {
   id       Int     @id @default(autoincrement())
   username String  @unique              // Unique username
   email    String  @unique              // Unique email
   name     String
   createdAt DateTime @default(now())    // Timestamp
+}
+
+model Location {
+  id                 Int     @id @default(autoincrement())
+  name               String
+  latitude           Float
+  longitude          Float
+  category           String
+  address            String
+  googlePlaceId      String  @unique
+  profilePicture     String?
+  rating             Float?
+  googleRatingsTotal Int?
 }
 
