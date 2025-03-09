@@ -14,12 +14,18 @@ model Job {
   jobLogs     JobLog[] // Relation to JobLog table
 }
 
+enum LogType {
+  SUCCESS
+  ERROR
+}
+
 model JobLog {
   id        Int      @id @default(autoincrement())
   message   String
   createdAt DateTime @default(now()) // Automatically sets the current timestamp
   jobId     Int      // Foreign key to Job table
   job       Job      @relation(fields: [jobId], references: [id]) // Link to Job table
+  logType   LogType
 }
 
 model User {
