@@ -33,7 +33,7 @@ async function fetchPlaces(): Promise<void> {
   let totalInserted = 0;
 
   if (await hasRunTooManyTimes()) {
-    await logMessage("Script already ran twice today. Exiting.", JOB_ID, LogType.SUCCESS);
+    await logMessage("Script already ran ten times today. Exiting.", JOB_ID, LogType.SUCCESS);
     return;
   }
 
